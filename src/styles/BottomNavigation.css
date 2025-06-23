@@ -6,26 +6,79 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #ffffff;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  padding: 10px 0;
+  background: #ffffff;
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem 0;
   z-index: 1000;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.85);
 }
 
 .nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-decoration: none;
-  color: #333;
-  padding: 8px 16px;
-  border-radius: 20px;
+  color: #718096;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
   transition: all 0.3s ease;
+  position: relative;
 }
 
-.nav-item:hover, .nav-item:focus {
-  background-color: #f0f0f0;
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4299e1, #38b2ac);
+  transition: width 0.3s ease;
 }
 
-/* Активный элемент (если нужно выделять текущую страницу) */
+.nav-item:hover {
+  color: #2d3748;
+  transform: translateY(-3px);
+}
+
+.nav-item:hover::after {
+  width: 60%;
+}
+
+/* Активная вкладка */
 .nav-item.active {
-  color: #1a73e8;
-  background-color: #e8f0fe;
+  color: #4299e1;
+  font-weight: 600;
+}
+
+.nav-item.active::after {
+  width: 60%;
+  background: linear-gradient(90deg, #4299e1, #38b2ac);
+}
+
+/* Иконки (если добавите) */
+.nav-item svg {
+  margin-bottom: 0.3rem;
+  font-size: 1.2rem;
+}
+
+/* Анимация при нажатии */
+.nav-item:active {
+  transform: translateY(1px);
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  .nav-item {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.75rem;
+  }
+  
+  .nav-item svg {
+    font-size: 1rem;
+  }
 }
