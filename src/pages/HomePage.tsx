@@ -7,13 +7,22 @@ interface HomePageProps{}
 export const HomePage:FC<HomePageProps> = () => {
     return(
         <div className="home-page">
-            <h1>Тренировочное приложение</h1>
+            <h1>Volga</h1>
             <div className="buttons-container">
                 <Link to='/add-workout'>
                     Добавить тренировку
                 </Link>
                 <Link to='/training-history'>
                     История тренировок
+                </Link>
+                <Link to='/training-history'>
+                    Статистика тренировок(зал)
+                </Link>
+                <Link to='/training-history'>
+                    Калькуляторы
+                </Link>
+                <Link to='/training-history'>
+                    Сообщество
                 </Link>
             </div>
         </div>

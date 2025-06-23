@@ -13,8 +13,6 @@
   font-size: 3rem;
   margin-bottom: 3rem;
   text-align: center;
-  background: linear-gradient(90deg, #00d4ff, #0066ff);
-  -webkit-text-fill-color: transparent;
   text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
 }
 
