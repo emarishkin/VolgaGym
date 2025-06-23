@@ -1,0 +1,63 @@
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  padding: 2rem;
+}
+
+.home-page h1 {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  background: linear-gradient(90deg, #00d4ff, #0066ff);
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.buttons-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.buttons-container a {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 250px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.buttons-container a:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.buttons-container a:nth-child(1) {
+  background: linear-gradient(90deg, #00d4ff, #0066ff);
+}
+
+.buttons-container a:nth-child(2) {
+  background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+}
+
+.home-page,
+.add-traning-page,
+.history-page {
+  padding-bottom: 60px; /* Оставляем место для нижней навигации */
+  min-height: 100vh;
+  box-sizing: border-box;
+}

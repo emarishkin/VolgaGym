@@ -1,14 +1,15 @@
 import { useState, type ChangeEvent, type FC, type FormEvent } from "react";
 import type { WorkoutEntry } from "../types/WorkoutEntry";
+import '../styles/TrainingForm.css'
 
 interface TrainingFormProps{
-
+onSubmit:(entry:WorkoutEntry)=>void
 }
 
-export const TrainingForm:FC<TrainingFormProps> = () => {
+export const TrainingForm:FC<TrainingFormProps> = ({onSubmit}) => {
 
     const [form,setForm] = useState({
-        date:new Date().toISOString(),
+        date:new Date().toISOString().split('T')[0],
         user:'не выбрано',
         exercise: 'Не выбрано',
         weight:'',
@@ -18,7 +19,7 @@ export const TrainingForm:FC<TrainingFormProps> = () => {
     })
     
     const handleChange = (e:ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        return ({...form,[e.target.name]:e.target.value})
+        return setForm({...form,[e.target.name]:e.target.value})
     }
      
     const handleSubmit = (e:FormEvent) => {
@@ -39,8 +40,18 @@ export const TrainingForm:FC<TrainingFormProps> = () => {
             reps: form.reps as 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20,
             duration: form.duration as 0 | 1 | 2 | 3 | 4 
         }
+        onSubmit(newEntry)
+        alert(`Запись сохранена. Данные: Имя:${form.user}, упражнение: ${form.exercise}, вес: ${form.weight}, повторения: ${form.reps}`)
 
-        setForm({...form,exercise: 'Не выбрано', weight: '', reps: 0, sets: 0});
+        setForm({
+            date: new Date().toISOString().split('T')[0],
+            user: 'не выбрано',
+            exercise: 'Не выбрано',
+            weight: '',
+            sets: 0,
+            reps: 0,
+            duration: 0
+        });
     }
 
 
@@ -92,6 +103,17 @@ return(
                 <label className="form-label">
                     Вес (кг):
                     <input className="form-input" name="weight" type="number" value={form.weight} onChange={handleChange} min="0" step="0.5" />
+                </label>
+            </div>
+            
+            <div className="form-group">
+                <label className="form-label">
+                    Подходы:
+                    <select className="form-select" name="sets" value={form.sets} onChange={handleChange}>
+                        {Array.from({length: 8}, (_, i) => (
+                            <option key={i} value={i}>{i}</option>
+                        ))}
+                    </select>
                 </label>
             </div>
 
