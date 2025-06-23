@@ -1,0 +1,65 @@
+/* Форма */
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="number"], select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Кнопка */
+button {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Результаты */
+.results {
+  margin-top: 20px;
+}
+
+.result-card {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border-left: 4px solid #4CAF50;
+}
+
+.result-card.loss {
+  border-left-color: #FF9800;
+}
+
+.result-card.gain {
+  border-left-color: #F44336;
+}
+
+.result-card p {
+  font-size: 24px;
+  margin: 5px 0;
+}
+
+.result-card span {
+  font-size: 14px;
+  color: #777;
+}
