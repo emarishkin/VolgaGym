@@ -23,6 +23,7 @@ body {
   color: var(--text);
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
+  padding-bottom: 72px !important;
 }
 
 /* Стили для ссылок */
