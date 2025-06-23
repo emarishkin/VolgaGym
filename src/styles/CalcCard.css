@@ -1,0 +1,44 @@
+.calc-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  border-top: 4px solid var(--card-color);
+}
+
+.calc-card:hover {
+  transform: translateY(-5px);
+}
+
+.calc-card-content {
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.calc-card h3 {
+  color: var(--card-color);
+  margin-bottom: 10px;
+}
+
+.calc-card p {
+  color: #666;
+  font-size: 14px;
+}
+
+.calc-button {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  background-color: var(--card-color);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.calc-button:hover {
+  background-color: color-mix(in srgb, var(--card-color), black 15%);
+}

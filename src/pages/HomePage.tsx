@@ -15,13 +15,13 @@ export const HomePage:FC<HomePageProps> = () => {
                 <Link to='/training-history'>
                     История тренировок
                 </Link>
-                <Link to='/training-history'>
+                <Link to='/'>
                     Статистика тренировок(зал)
                 </Link>
-                <Link to='/training-history'>
+                <Link to='/calc'>
                     Калькуляторы
                 </Link>
-                <Link to='/training-history'>
+                <Link to='/'>
                     Сообщество
                 </Link>
             </div>
