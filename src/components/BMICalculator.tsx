@@ -1,5 +1,6 @@
 import { useState, type FC, type FormEvent } from "react";
 import '../styles/BMICalculator.css'
+import { Link } from "react-router-dom";
 
 export const BMICalculator:FC = () => {
 
@@ -46,7 +47,7 @@ export const BMICalculator:FC = () => {
                 />
             </div>
 
-            <button type="submit">Рассчитать</button>
+            <button className="button-bmi" type="submit">Рассчитать</button>
 
             {bmi && (
                 <div className="result-bmi">
@@ -54,6 +55,11 @@ export const BMICalculator:FC = () => {
                     <h3>Категория:{HandleCategory()}</h3>
                 </div>
             )}
+
+            <Link to='/calc'>
+                ← Вернуться к калькуляторам
+            </Link>
+
         </form>
     )
 }

@@ -99,6 +99,9 @@ button[type="submit"]:active {
   animation: fadeIn 0.4s ease-out forwards;
 }
 
+.button-bmi{
+  margin-bottom: 20px;
+}
 /* Адаптивность */
 @media (max-width: 600px) {
   form {
