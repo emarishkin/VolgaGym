@@ -7,6 +7,7 @@ import './styles/global.css'
 import { CalcPage } from "./pages/CalcPage";
 import { BMICalculator } from "./components/BMICalculator";
 import { CaloriesCalculator } from "./components/CaloriesCalculator";
+import { PM1Calculator } from "./components/PM1Calculator";
 
 const AppContent = () => {
   const location = useLocation();
@@ -22,8 +23,8 @@ const AppContent = () => {
           <Route path="/calc" element={<CalcPage />} />
           <Route path="/calc/bmi" element={<BMICalculator/>} />
           <Route path="/calc/calories" element={<CaloriesCalculator />} />
-          {/* <Route path="/calc/macros" element={<MacrosCalculator />} />
-          <Route path="/calc/1rm" element={<OneRepMaxCalculator />} /> */}
+          {/* <Route path="/calc/macros" element={<MacrosCalculator />} /> */}
+          <Route path="/calc/1rm" element={<PM1Calculator/>} />
         </Routes>
       </main>
       {!isHomePage && <BottomNavigation />}
