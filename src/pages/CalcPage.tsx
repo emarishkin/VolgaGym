@@ -31,6 +31,13 @@ export const CalcPage: FC = () => {
           path="/calc/1rm"
           color="#F44336"
         />
+
+        <CalcCard 
+          title="Суточная норма белка"
+          description="Рассчитайте вашу суточную норму белка"
+          path="/calc/belok"
+          color="#2196F3"
+        />
       </div>
     </div>
   );

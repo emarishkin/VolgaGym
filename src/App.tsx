@@ -8,6 +8,7 @@ import { CalcPage } from "./pages/CalcPage";
 import { BMICalculator } from "./components/BMICalculator";
 import { CaloriesCalculator } from "./components/CaloriesCalculator";
 import { PM1Calculator } from "./components/PM1Calculator";
+import { BelokCalculator } from "./components/BelokCalculator";
 
 const AppContent = () => {
   const location = useLocation();
@@ -25,6 +26,8 @@ const AppContent = () => {
           <Route path="/calc/calories" element={<CaloriesCalculator />} />
           {/* <Route path="/calc/macros" element={<MacrosCalculator />} /> */}
           <Route path="/calc/1rm" element={<PM1Calculator/>} />
+          <Route path="/calc/belok" element={<BelokCalculator />} />
+
         </Routes>
       </main>
       {!isHomePage && <BottomNavigation />}
