@@ -42,14 +42,14 @@ export const CaloriesCalculator:FC = () => {
             <div className="input-group">
                 <label>Мужчина</label>
                 <input
-                type="radio"
+                type="checkbox"
                 value={gender}
                 onChange={()=>setGender('male')}
                 />
 
                 <label>Женщина</label>
                 <input
-                type="radio"
+                type="checkbox"
                 value={gender}
                 onChange={()=>setGender('female')}
                 />

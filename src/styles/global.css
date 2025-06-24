@@ -23,7 +23,7 @@ body {
   color: var(--text);
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
-  padding-bottom: 72px !important;
+  height: 100%;
 }
 
 /* Стили для ссылок */
@@ -47,6 +47,10 @@ button:hover, .button:hover {
   background-color: #0d5bba;
 }
 
+a{
+  margin: 0 !important;
+}
+
 /* Общие стили для форм */
 input, textarea, select {
   width: 100%;
@@ -60,7 +64,7 @@ input, textarea, select {
 .page-container {
   min-height: 100vh;
   padding: 20px;
-  padding-bottom: 80px; /* Отступ для BottomNavigation */
+  padding-bottom: 80px; /* Должно быть больше или равно высоте панели (64px + дополнительные отступы) */
 }
 
 /* Стили для заголовков */
