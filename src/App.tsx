@@ -9,6 +9,7 @@ import { BMICalculator } from "./components/BMICalculator";
 import { CaloriesCalculator } from "./components/CaloriesCalculator";
 import { PM1Calculator } from "./components/PM1Calculator";
 import { BelokCalculator } from "./components/BelokCalculator";
+import { BACCalc } from "./components/BACCalc";
 
 const AppContent = () => {
   const location = useLocation();
@@ -27,6 +28,7 @@ const AppContent = () => {
           {/* <Route path="/calc/macros" element={<MacrosCalculator />} /> */}
           <Route path="/calc/1rm" element={<PM1Calculator/>} />
           <Route path="/calc/belok" element={<BelokCalculator />} />
+          <Route path="/calc/bac" element={<BACCalc />} />
 
         </Routes>
       </main>

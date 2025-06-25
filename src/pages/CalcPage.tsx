@@ -38,6 +38,13 @@ export const CalcPage: FC = () => {
           path="/calc/belok"
           color="#2196F3"
         />
+
+        <CalcCard 
+          title="Калькулятор BAC"
+          description="Оцените содержание алкоголя в крови в зависимости от количества выпитых напитков"
+          path="/calc/bac"
+          color="#F44336"
+        />
       </div>
     </div>
   );
