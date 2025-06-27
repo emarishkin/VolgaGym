@@ -1,233 +1,443 @@
-/* Общие стили для всех форм */
+/* Cosmic Form Styles - Interstellar Design System */
+:root {
+  --cosmic-primary: #6a5acd; /* Slate blue - primary cosmic color */
+  --cosmic-secondary: #9370db; /* Medium purple */
+  --cosmic-dark: #1a1a2e; /* Deep space */
+  --cosmic-darker: #0f0f1a; /* Void */
+  --cosmic-light: #f8f9ff; /* Starlight */
+  --cosmic-accent: #00d4ff; /* Nebula teal */
+  --cosmic-success: #4caf50; /* Green planet */
+  --cosmic-warning: #ff9800; /* Orange sun */
+  --cosmic-danger: #f44336; /* Red giant */
+  --cosmic-info: #2196f3; /* Blue comet */
+  --cosmic-gradient: linear-gradient(135deg, var(--cosmic-primary), var(--cosmic-accent));
+  --cosmic-glow: 0 0 15px rgba(106, 90, 205, 0.5);
+  --cosmic-border-radius: 16px;
+  --cosmic-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Cosmic Base Styles */
 .form-container {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 680px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: var(--cosmic-border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--cosmic-light);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
+.form-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, 
+    rgba(106, 90, 205, 0.1) 0%, 
+    rgba(26, 26, 46, 0.8) 70%);
+  z-index: -1;
+  animation: cosmicPulse 20s infinite alternate;
+}
+
+@keyframes cosmicPulse {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  100% { transform: scale(1.1); opacity: 0.8; }
+}
+
+/* Cosmic Typography */
 .form-title {
-  color: #2c3e50;
+  color: var(--cosmic-light);
   text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
-  font-weight: 600;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 10px rgba(0, 212, 255, 0.3);
+  position: relative;
+  display: inline-block;
+  width: 100%;
 }
 
+.form-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--cosmic-gradient);
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
 
 .form-label {
   display: block;
-  margin-bottom: 0.5rem;
-  color: #34495e;
+  margin-bottom: 0.75rem;
+  color: var(--cosmic-light);
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
 }
 
+/* Cosmic Input Fields */
 .form-input, .form-select {
   width: 100%;
-  padding: 0.8rem 1rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  background: rgba(26, 26, 46, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   font-size: 1rem;
-  transition: all 0.3s ease;
-  background-color: #f9f9f9;
+  transition: var(--cosmic-transition);
+  color: var(--cosmic-light);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .form-input:focus, .form-select:focus {
-  border-color: #3498db;
+  border-color: var(--cosmic-accent);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-  background-color: #fff;
+  box-shadow: 
+    0 0 0 3px rgba(0, 212, 255, 0.2),
+    inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  background: rgba(26, 26, 46, 0.8);
+  transform: translateY(-2px);
 }
 
-.form-input::-webkit-outer-spin-button,
-.form-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
+/* Cosmic Button - Stellar CTA */
 .calculate-btn {
   width: 100%;
-  padding: 1rem;
-  background: linear-gradient(135deg, #3498db, #2980b9);
+  padding: 1.25rem;
+  background: var(--cosmic-gradient);
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
+  border-radius: 12px;
+  font-size: 1.15rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 1rem;
+  transition: var(--cosmic-transition);
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 
+    0 5px 15px rgba(106, 90, 205, 0.4),
+    0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.calculate-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--cosmic-accent), var(--cosmic-primary));
+  opacity: 0;
+  transition: var(--cosmic-transition);
+  z-index: -1;
 }
 
 .calculate-btn:hover {
-  background: linear-gradient(135deg, #2980b9, #3498db);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 8px 25px rgba(106, 90, 205, 0.6),
+    0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.calculate-btn:hover::before {
+  opacity: 1;
 }
 
 .calculate-btn:active {
-  transform: translateY(0);
+  transform: translateY(1px);
 }
 
 .calculate-btn:disabled {
-  background: #bdc3c7;
+  background: #3a3a4e;
   cursor: not-allowed;
   transform: none;
+  box-shadow: none;
 }
 
-/* Стили для результатов */
+/* Cosmic Results - Nebula Display */
 .result-form {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  border-left: 4px solid #3498db;
+  margin-top: 2.5rem;
+  padding: 2rem;
+  background: rgba(26, 26, 46, 0.6);
+  border-radius: 12px;
+  border-left: 4px solid var(--cosmic-accent);
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.result-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(106, 90, 205, 0.1) 0%, 
+    rgba(0, 212, 255, 0.05) 100%);
+  z-index: -1;
 }
 
 .result-form h2 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
+  color: var(--cosmic-light);
+  margin-bottom: 1.25rem;
+  font-size: 1.7rem;
+  font-weight: 600;
 }
 
 .result-form h3 {
-  color: #34495e;
-  margin: 1rem 0 0.5rem;
-  font-size: 1.2rem;
+  color: var(--cosmic-secondary);
+  margin: 1.25rem 0 0.75rem;
+  font-size: 1.3rem;
+  font-weight: 500;
 }
 
 .result-form p {
-  color: #7f8c8d;
-  margin: 0.5rem 0;
-  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0.75rem 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
+/* Cosmic Macros Grid - Constellation Layout */
 .macros-grid {
-  display: flex;
-  flex-direction: column;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
 }
 
 .macro-item {
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  background: rgba(41, 41, 71, 0.6);
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
+  transition: var(--cosmic-transition);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.macro-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(106, 90, 205, 0.3);
+  border-color: rgba(106, 90, 205, 0.3);
 }
 
 .macro-item h4 {
-  color: #3498db;
-  margin-bottom: 0.5rem;
+  color: var(--cosmic-accent);
+  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
 }
 
 .macro-item p {
-  color: #7f8c8d;
-  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
 }
 
-/* Стили для ссылок */
-.back-link {
-  display: inline-block;
-  margin-top: 1.5rem;
-  color: #3498db;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.back-link:hover {
-  color: #2980b9;
-  text-decoration: underline;
-}
-
-/* Дополнительные стили для компонентов */
+/* Cosmic Special Elements */
 .average {
-    grid-column: 1 / -1;
-    background: #f0f7ff;
-    border-left: 4px solid #3498db;
+  grid-column: 1 / -1;
+  background: rgba(0, 212, 255, 0.1);
+  border-left: 4px solid var(--cosmic-accent);
+  padding: 1.5rem;
 }
 
 .result-value {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--cosmic-light);
+  background: var(--cosmic-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 
 .result-text {
-    font-size: 1.2rem;
-    color: #34495e;
+  font-size: 1.3rem;
+  color: var(--cosmic-light);
+  font-weight: 500;
 }
 
 .result-verdict {
-    font-weight: 600;
-    font-size: 1.2rem;
-    padding: 0.5rem;
-    border-radius: 4px;
+  font-weight: 600;
+  font-size: 1.3rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 0.5rem;
 }
 
 .result-verdict.allowed {
-    background-color: #e8f5e9;
-    color: #2e7d32;
+  background-color: rgba(76, 175, 80, 0.2);
+  color: #a5d6a7;
+  border: 1px solid rgba(76, 175, 80, 0.3);
 }
 
 .result-verdict.not-allowed {
-    background-color: #ffebee;
-    color: #c62828;
+  background-color: rgba(244, 67, 54, 0.2);
+  color: #ff8a80;
+  border: 1px solid rgba(244, 67, 54, 0.3);
 }
 
+/* Cosmic Checkboxes - Radio Stars */
 .checkbox-group {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
 }
 
 .checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  position: relative;
+  padding-left: 2rem;
 }
 
 .checkbox-input[type="radio"] {
-    width: 18px;
-    height: 18px;
-    accent-color: #3498db;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-/* Анимации */
+.checkbox-custom {
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  background: rgba(26, 26, 46, 0.7);
+  border: 2px solid var(--cosmic-secondary);
+  border-radius: 50%;
+  transition: var(--cosmic-transition);
+}
+
+.checkbox-input[type="radio"]:checked ~ .checkbox-custom {
+  background: var(--cosmic-gradient);
+  border-color: var(--cosmic-primary);
+  box-shadow: var(--cosmic-glow);
+}
+
+.checkbox-input[type="radio"]:checked ~ .checkbox-custom::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+}
+
+.checkbox-text {
+  color: var(--cosmic-light);
+  font-size: 1.05rem;
+  transition: var(--cosmic-transition);
+}
+
+.checkbox-input[type="radio"]:checked ~ .checkbox-text {
+  color: var(--cosmic-accent);
+  font-weight: 500;
+}
+
+/* Cosmic Link - Wormhole Navigation */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  color: var(--cosmic-accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--cosmic-transition);
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+.back-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--cosmic-accent);
+  transition: var(--cosmic-transition);
+}
+
+.back-link:hover {
+  color: white;
+}
+
+.back-link:hover::before {
+  width: 100%;
+}
+
+/* Cosmic Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.result-form {
-  animation: fadeIn 0.5s ease-out;
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
 }
 
-/* Специфические стили для чекбоксов */
-.checkbox-group {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
+/* Responsive Cosmic Adjustments */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 1.5rem;
+    margin: 1.5rem auto;
+    max-width: 95%;
+  }
+  
+  .macros-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkbox-group {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
+/* Cosmic Scrollbar (for browsers that support it) */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.checkbox-input {
-  width: 18px;
-  height: 18px;
-  accent-color: #3498db;
+::-webkit-scrollbar-track {
+  background: var(--cosmic-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cosmic-primary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cosmic-accent);
 }
