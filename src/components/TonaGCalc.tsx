@@ -1,5 +1,6 @@
 import { useState } from "react";
 import '../styles/FormStyles.css'
+import { Link } from "react-router-dom";
 
 
 export const VolumeCalculator = () => {
@@ -31,6 +32,10 @@ export const VolumeCalculator = () => {
           <h3>Общий объем: <strong>{volume} кг</strong></h3>
         </div>
       )}
+
+        <Link to='/calc' className="back-link">
+            ← Вернуться к калькуляторам
+        </Link>
     </div>
   );
 };

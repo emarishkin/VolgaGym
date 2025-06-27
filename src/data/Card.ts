@@ -43,4 +43,10 @@ export const Cards:ICard[] = [
        path: "/calc/tonaG",
        color: "#4CAF50"
     },
+    {
+       title: "Самый полный калькулятор",
+       description: "Рассчитайте все",
+       path: "/calc/FULL",
+       color: "#FF9800"
+    },
 ]
