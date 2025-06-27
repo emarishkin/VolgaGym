@@ -1,73 +1,93 @@
 import { useState, type FC, type FormEvent } from "react";
-import '../styles/PM1Calculator.css'
 import { Link } from "react-router-dom";
+import '../styles/FormStyles.css';
 
-export const PM1Calculator:FC = () => {
+export const PM1Calculator: FC = () => {
+    const [weight, setWeight] = useState<number>(0);
+    const [reps, setReps] = useState<number>(0);
+    const [result, setResult] = useState<{
+        FormulaEply: number,
+        FormulaBR: number,
+        FormulaLen: number,
+        averange: number
+    } | null>(null);
     
-    const [weight,setWeight] = useState<number>(0);
-    const [reps,setReps] = useState<number>(0);
-    const [result,setResult] = useState<{FormulaEply:number,FormulaBR:number,FormulaLen:number,averange:number} | null>(null);
-    
-    const handleSubmit = (e:FormEvent) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        if(weight <= 0 || reps <= 0){
-          return alert('введите корректные данные');
-        } 
+        if (weight <= 0 || reps <= 0) {
+            return alert('Введите корректные данные');
+        }
 
-        const FormulaEply = (weight*reps)/30+weight;
-        const FormulaBR = weight*(36/(37-reps));
-        const FormulaLen = (100*weight)/(101.3-2.67123*reps);
-        const averange = (FormulaEply+FormulaBR+FormulaLen)/3;
+        const FormulaEply = (weight * reps) / 30 + weight;
+        const FormulaBR = weight * (36 / (37 - reps));
+        const FormulaLen = (100 * weight) / (101.3 - 2.67123 * reps);
+        const averange = (FormulaEply + FormulaBR + FormulaLen) / 3;
 
         setResult({
-            FormulaEply:Math.round(FormulaEply),
-            FormulaBR:Math.round(FormulaBR),
-            FormulaLen:Math.round(FormulaLen),
-            averange:Math.round(averange)
+            FormulaEply: Math.round(FormulaEply),
+            FormulaBR: Math.round(FormulaBR),
+            FormulaLen: Math.round(FormulaLen),
+            averange: Math.round(averange)
         });
-    }
+    };
 
     return (
-        <div className="pm1-calculator">
-            <form className="pm1-form" onSubmit={handleSubmit}>
-                <h2 className="pm1-title">Расчёт одноповторного максимума</h2>
+        <div className="form-container">
+            <form onSubmit={handleSubmit}>
+                <h2 className="form-title">Расчёт одноповторного максимума</h2>
                 
-                <div className="pm1-input-group">
-                    <label className="pm1-label">Вес (кг)</label>
+                <div className="input-group">
+                    <label className="form-label">Вес (кг)</label>
                     <input
-                      className="pm1-input"
-                      type="number"
-                      value={weight || ''} 
-                      onChange={(e)=>setWeight(Number(e.target.value))}
+                        className="form-input"
+                        type="number"
+                        value={weight || ''}
+                        onChange={(e) => setWeight(Number(e.target.value))}
+                        min="1"
                     />
                 </div>
 
-                <div className="pm1-input-group">
-                    <label className="pm1-label">Повторения</label>
+                <div className="input-group">
+                    <label className="form-label">Повторения</label>
                     <input
-                      className="pm1-input"
-                      type="number"
-                      value={reps || ''} 
-                      onChange={(e)=>setReps(Number(e.target.value))}
+                        className="form-input"
+                        type="number"
+                        value={reps || ''}
+                        onChange={(e) => setReps(Number(e.target.value))}
+                        min="1"
                     />
                 </div>
                 
-                <button className="pm1-button" type="submit">Рассчитать</button>
+                <button className="calculate-btn" type="submit">Рассчитать</button>
 
                 {result && (
-                  <div className="pm1-results">
-                      <p className="pm1-result">{`По формуле Эпли: ${result.FormulaEply} кг`}</p>
-                      <p className="pm1-result">{`По формуле Бржицки: ${result.FormulaBR} кг`}</p>
-                      <p className="pm1-result">{`По формуле Лэндера: ${result.FormulaLen} кг`}</p>
-                      <p className="pm1-result pm1-average">{`Среднее значение: ${result.averange} кг`}</p>
-                  </div>
+                    <div className="result-form">
+                        <h3>Результаты расчета:</h3>
+                        <div className="macros-grid">
+                            <div className="macro-item">
+                                <p>Формула Эпли:</p>
+                                <strong>{result.FormulaEply} кг</strong>
+                            </div>
+                            <div className="macro-item">
+                                <p>Формула Бржицки:</p>
+                                <strong>{result.FormulaBR} кг</strong>
+                            </div>
+                            <div className="macro-item">
+                                <p>Формула Лэндера:</p>
+                                <strong>{result.FormulaLen} кг</strong>
+                            </div>
+                        </div>
+                        <div className="macro-item average">
+                            <p>Среднее значение:</p>
+                            <strong>{result.averange} кг</strong>
+                        </div>
+                    </div>
                 )}
 
-                <Link to='/calc'>
+                <Link to='/calc' className="back-link">
                     ← Вернуться к калькуляторам
                 </Link>
-
             </form>
         </div>
     );
-}
+};

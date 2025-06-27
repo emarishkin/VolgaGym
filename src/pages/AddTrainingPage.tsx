@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { TrainingForm } from "../components/TrainingForm";
 import type { WorkoutEntry } from "../types/WorkoutEntry";
-import '../styles/AddTrainingPage.css'
+    
 
 interface AddTrainingPageProps{}
 

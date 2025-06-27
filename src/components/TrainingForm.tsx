@@ -1,6 +1,6 @@
 import { useState, type ChangeEvent, type FC, type FormEvent } from "react";
 import type { WorkoutEntry } from "../types/WorkoutEntry";
-import '../styles/TrainingForm.css'
+
 
 interface TrainingFormProps{
 onSubmit:(entry:WorkoutEntry)=>void
