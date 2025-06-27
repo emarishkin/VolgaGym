@@ -36,5 +36,11 @@ export const Cards:ICard[] = [
        description: "Оцените содержание алкоголя в крови в зависимости от количества выпитых напитков",
        path: "/calc/bac",
        color: "#F44336"
-    }
+    },
+    {
+       title: "Объем тренировки (тоннаж)",
+       description: "Рассчитайте ваш общий тоннаж",
+       path: "/calc/tonaG",
+       color: "#4CAF50"
+    },
 ]

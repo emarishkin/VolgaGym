@@ -11,6 +11,7 @@ import { PM1Calculator } from "./components/PM1Calculator";
 import { BelokCalculator } from "./components/BelokCalculator";
 import { BACCalc } from "./components/BACCalc";
 import { BJUCalcFull } from "./components/BJUCalcFull";
+import { VolumeCalculator } from "./components/TonaGCalc";
 
 const AppContent = () => {
   const location = useLocation();
@@ -30,6 +31,7 @@ const AppContent = () => {
           <Route path="/calc/1rm" element={<PM1Calculator/>} />
           <Route path="/calc/belok" element={<BelokCalculator />} />
           <Route path="/calc/bac" element={<BACCalc />} />
+           <Route path="/calc/tonaG" element={<VolumeCalculator />} />
 
         </Routes>
       </main>
