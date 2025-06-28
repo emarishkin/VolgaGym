@@ -57,9 +57,12 @@ export const MainCalculate:FC = () => {
       return imt;
     }
 
-    function IdealWeight(height: number) {
-      const ideal = height - 100 - ((height - 150) / 4);
-      return ideal;
+    function IdealWeight(height: number, gender: 'male' | 'female') {
+      if (gender === 'male') {
+        return 50 + 0.91 * (height - 152.4); 
+      } else {
+        return 45.5 + 0.91 * (height - 152.4);
+      }
     }
 
     function MetaBolism(weight: number, height: number, age: number, gender: 'male' | 'female') {
@@ -73,29 +76,28 @@ export const MainCalculate:FC = () => {
     }
 
     function TDEE(metabolism: number, activity: number) {
-      const tdee = metabolism * activity;
-      return tdee;
+      return metabolism * activity;
     }
 
-    function Purpose(tdee: number, purpose: string) {
-      let ResultPurpose;
-      if (purpose === 'weight loss') {
-        ResultPurpose = tdee * 0.85;
-      } else if (purpose === 'weight maintenance') {
-        ResultPurpose = tdee;
-      } else {
-        ResultPurpose = tdee * 1.15;
+    function Purpose(tdee: number, purpose: string, level: string, diseases: string) {
+      let modifier = 1;
+      if (diseases !== 'No') modifier *= 0.85; 
+
+      if (purpose === 'muscle weight gain') {
+        return level === 'professional' ? tdee * 1.2 * modifier : tdee * 1.1 * modifier;
+      } else if (purpose === 'weight loss') {
+        return tdee * 0.8 * modifier; 
       }
-      return ResultPurpose;
-    }
+      return tdee * modifier;
+    }    
 
-    function BJU(weight: number, level: string, purpose: string) {
+    function BJU(weight: number, level: string, purpose: string , ) {
       let belok = 0;
       let fat = 0;
       let yglivody = 0;
       
       if (purpose === 'muscle weight gain') {
-        belok = level === 'professional' ? weight * 2.2 : weight * 1.8;
+        belok = level === 'professional' ? weight * 2.3 : weight * 1.8;
       } else if (purpose === 'weight loss') {
         belok = weight * 2.0;
       } else { 
@@ -110,21 +112,16 @@ export const MainCalculate:FC = () => {
         fat = weight * 1;
       }
       
-      if (purpose === 'muscle weight gain') {
-        yglivody = weight * 4;
-      } else if (purpose === 'weight maintenance') {
-        yglivody = weight * 3.5;
-      } else if (purpose === 'weight loss') {
-        yglivody = weight * 3;
-      } 
+      yglivody = (ResultPURPOSE - belok - fat)/4
+
       return { belok, fat, yglivody };
     }
 
     const ResultMetabolism = MetaBolism(form.weight, form.height, form.age, form.gender);
     const ResultTDEE = TDEE(ResultMetabolism, form.activity);
     const ResultIMT = IMT(form.weight, form.height);
-    const ResultIdealWeight = IdealWeight(form.height);
-    const ResultPURPOSE = Purpose(ResultTDEE, form.purpose);
+    const ResultIdealWeight = IdealWeight(form.height,form.gender);
+    const ResultPURPOSE = Purpose(ResultTDEE, form.purpose ,form.level,form.diseases);
     const ResultBJU = BJU(form.weight, form.level, form.purpose);
 
     setResult({
@@ -230,9 +227,9 @@ export const MainCalculate:FC = () => {
           >
             <option value={1.2}>Сидячий образ жизни (не занимаюсь в зале, максимальная активность 1500 шагов в день)</option>
             <option value={1.375}>Легкая активность (1–3 тренировки/неделю или 1500-2500 шагов в день)</option>
-            <option value={1.55}>Умеренная активность (3–5 тренировок, возможно немного кардио, 3000 шагов в день)</option>
-            <option value={1.725}>Высокая активность (6–7 тренировок)</option>
-            <option value={2.1}>Экстремальная активность (Профессиональный / выступающий спортсмен)</option>
+            <option value={1.5}>Умеренная активность (3–5 тренировок, возможно немного кардио, 3000 шагов в день)</option>
+            <option value={1.6}>Высокая активность (6–7 тренировок)</option>
+            <option value={1.8}>Экстремальная активность (Профессиональный / выступающий спортсмен)</option>
           </select>
         </div>
 
