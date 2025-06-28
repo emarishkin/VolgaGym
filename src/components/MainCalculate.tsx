@@ -8,8 +8,7 @@ interface FormTypes {
   weight: number; 
   stepsInDay: number;
   timeCardio: number;
-  timeStrong: number;
-  activity: number; 
+  timeStrong: number; 
   purpose: 'weight loss' | 'weight maintenance' | 'muscle weight gain';
   diseases: 'No' | 'Hypothyroidism' | 'Leptin resistance/Insulin resistance' | 'Deficiencies in sex hormones and various active compensatory mechanisms' | 'endocrine disorders';
   level: 'amateur' | 'professional';
@@ -24,7 +23,6 @@ export const MainCalculate:FC = () => {
     stepsInDay: 2500,
     timeCardio: 20,
     timeStrong: 180,
-    activity: 1.55, 
     purpose: 'weight loss',
     diseases: 'No',
     level: 'amateur'
@@ -34,13 +32,13 @@ export const MainCalculate:FC = () => {
     ResultIMT: number;
     ResultIdealWeight: number;
     ResultMetabolism: number;
-    ResultTDEE: number;
-    ResultPURPOSE: number;
-    ResultBJU: {
-      belok: number;
-      fat: number;
-      yglivody: number;
-    };
+    ResultActivnosty:number
+    ResultTDEE:number
+    ResultBJU:{
+      belok:number
+      fat:number
+      yglivody:number
+    }
   } | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -74,62 +72,73 @@ export const MainCalculate:FC = () => {
       }
       return metabolism;
     }
+    
+    function Activnosty(stepsInDay:number,timeCardio:number,timeStrong:number,level:string){
+      let activ = 1.2
+      if(stepsInDay>=5000) activ=1.275
+      else if(stepsInDay>=8000) activ=1.45
+      else if(stepsInDay>=12000) activ=1.65
+      
+      const cardioBoost = Math.min(timeCardio / 2000, 0.2)
+      activ+=cardioBoost
 
-    function TDEE(metabolism: number, activity: number) {
-      return metabolism * activity;
+      const strongBoost = Math.min(timeStrong / 2000, 0.2);
+      activ+=strongBoost
+
+      if (level === 'professional') activ *= 1.125  ;
+
+      return Math.min(Math.max(activ, 1.2), 2);
     }
-
-    function Purpose(tdee: number, purpose: string, level: string, diseases: string) {
-      let modifier = 1;
-      if (diseases !== 'No') modifier *= 0.85; 
-
-      if (purpose === 'muscle weight gain') {
-        return level === 'professional' ? tdee * 1.2 * modifier : tdee * 1.1 * modifier;
-      } else if (purpose === 'weight loss') {
-        return tdee * 0.8 * modifier; 
+    function TDEE(ResultActivnosty:number,ResultMetabolism:number,purpose:string){
+      let resultTDEE = ResultActivnosty*ResultMetabolism
+      if(purpose==='muscle weight gain'){
+        resultTDEE = resultTDEE * 1.15
+      } else if(purpose==='weight loss'){
+        resultTDEE = resultTDEE * 0.85
+      } else {
+        resultTDEE = resultTDEE
       }
-      return tdee * modifier;
-    }    
+      return resultTDEE
+    }
+    function BJU(weight:number,level:string,purpose:string,ResultTDEE:number){
+      let belok = 0
+      let fat = 0
+      let yglivody = 0
 
-    function BJU(weight: number, level: string, purpose: string , ) {
-      let belok = 0;
-      let fat = 0;
-      let yglivody = 0;
-      
-      if (purpose === 'muscle weight gain') {
-        belok = level === 'professional' ? weight * 2.3 : weight * 1.8;
-      } else if (purpose === 'weight loss') {
-        belok = weight * 2.0;
-      } else { 
-        belok = weight * 1.6;
+      if(purpose==='muscle weight gain'){
+        belok = level === 'professional'?weight*2.2:weight*1.7
+      } else if (purpose==='weight loss') {
+        belok = level === 'professional'?weight*2.2:weight*1.7
+      } else {
+        belok = weight*2
       }
       
-      if (purpose === 'weight loss') {
-        fat = weight * 0.45;
-      } else if (purpose === 'weight maintenance') {
-        fat = weight * 0.65;
-      } else if (purpose === 'muscle weight gain') {
-        fat = weight * 1;
+      if(purpose==='muscle weight gain'){
+        fat = level === 'professional'?weight*0.85:weight*1
+      } else if (purpose==='weight loss') {
+        fat = level === 'professional'?weight*0.5:weight*0.73
+      } else {
+        fat = weight*0.75
       }
-      
-      yglivody = (ResultPURPOSE - belok - fat)/4
 
-      return { belok, fat, yglivody };
+      yglivody = (ResultTDEE - (belok*4) - (fat*9))/4
+
+      return {belok,fat,yglivody}
     }
 
     const ResultMetabolism = MetaBolism(form.weight, form.height, form.age, form.gender);
-    const ResultTDEE = TDEE(ResultMetabolism, form.activity);
     const ResultIMT = IMT(form.weight, form.height);
     const ResultIdealWeight = IdealWeight(form.height,form.gender);
-    const ResultPURPOSE = Purpose(ResultTDEE, form.purpose ,form.level,form.diseases);
-    const ResultBJU = BJU(form.weight, form.level, form.purpose);
+    const ResultActivnosty = Activnosty(form.stepsInDay,form.timeCardio,form.timeStrong,form.level);
+    const ResultTDEE = TDEE(ResultActivnosty,ResultMetabolism,form.purpose);
+    const ResultBJU = BJU(form.weight,form.level,form.purpose,ResultTDEE);
 
     setResult({
       ResultIMT,
       ResultIdealWeight,
       ResultMetabolism,
+      ResultActivnosty,
       ResultTDEE,
-      ResultPURPOSE,
       ResultBJU
     });
   };
@@ -156,7 +165,7 @@ export const MainCalculate:FC = () => {
           <input 
             name="age" 
             type="number"
-            value={form.age} 
+            value={form.age || ''} 
             onChange={handleChange}
             className="form-input"
           />
@@ -167,7 +176,7 @@ export const MainCalculate:FC = () => {
           <input 
             name="height" 
             type="number"
-            value={form.height} 
+            value={form.height || ''} 
             onChange={handleChange}
             className="form-input"
           />
@@ -189,7 +198,7 @@ export const MainCalculate:FC = () => {
           <input 
             name="stepsInDay" 
             type="number"
-            value={form.stepsInDay} 
+            value={form.stepsInDay || ''} 
             onChange={handleChange}
             className="form-input"
           />
@@ -200,7 +209,7 @@ export const MainCalculate:FC = () => {
           <input 
             name="timeCardio" 
             type="number"
-            value={form.timeCardio} 
+            value={form.timeCardio || ''} 
             onChange={handleChange}
             className="form-input"
           />
@@ -211,28 +220,12 @@ export const MainCalculate:FC = () => {
           <input 
             name="timeStrong" 
             type="number"
-            value={form.timeStrong} 
+            value={form.timeStrong || ''} 
             onChange={handleChange}
             className="form-input"
           />
         </div>
         
-        <div className="input-group">
-          <label className="form-label">Уровень активности</label>
-          <select 
-            name="activity" 
-            value={form.activity} 
-            onChange={handleChange}
-            className="form-select"
-          >
-            <option value={1.2}>Сидячий образ жизни (не занимаюсь в зале, максимальная активность 1500 шагов в день)</option>
-            <option value={1.375}>Легкая активность (1–3 тренировки/неделю или 1500-2500 шагов в день)</option>
-            <option value={1.5}>Умеренная активность (3–5 тренировок, возможно немного кардио, 3000 шагов в день)</option>
-            <option value={1.6}>Высокая активность (6–7 тренировок)</option>
-            <option value={1.8}>Экстремальная активность (Профессиональный / выступающий спортсмен)</option>
-          </select>
-        </div>
-
         <div className="input-group">
           <label className="form-label">Цель</label>
           <select 
@@ -285,6 +278,11 @@ export const MainCalculate:FC = () => {
             <div className="macro-item">
               <h4>Индекс массы тела</h4>
               <p className="result-value">{result.ResultIMT.toFixed(1)}</p>
+              <p className="result-text">
+                {result.ResultIMT < 18.5 ? 'Недостаточный вес' : 
+                 result.ResultIMT < 25 ? 'Нормальный вес' : 
+                 result.ResultIMT < 30 ? 'Избыточный вес' : 'Ожирение'}
+              </p>
             </div>
             
             <div className="macro-item">
@@ -294,22 +292,22 @@ export const MainCalculate:FC = () => {
             
             <div className="macro-item">
               <h4>Рекомендуемая калорийность</h4>
-              <p className="result-value">{result.ResultPURPOSE.toFixed(0)} ккал</p>
+              <p className="result-value">{result.ResultTDEE.toFixed(1)} ккал</p>
             </div>
             
             <h3>Рекомендации по БЖУ:</h3>
             <div className="macros-grid">
               <div className="macro-item">
                 <h4>Белки</h4>
-                <p className="result-value">{result.ResultBJU.belok.toFixed(1)} г</p>
+                <p className="result-value">{result.ResultBJU.belok.toFixed(0)} г</p>
               </div>
               <div className="macro-item">
                 <h4>Жиры</h4>
-                <p className="result-value">{result.ResultBJU.fat.toFixed(1)} г</p>
+                <p className="result-value">{result.ResultBJU.fat.toFixed(0)} г</p>
               </div>
               <div className="macro-item">
                 <h4>Углеводы</h4>
-                <p className="result-value">{result.ResultBJU.yglivody.toFixed(1)} г</p>
+                <p className="result-value">{result.ResultBJU.yglivody.toFixed(0)} г</p>
               </div>
             </div>
           </div>
