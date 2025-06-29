@@ -29,6 +29,7 @@ const AppContent = () => {
           <Route path="/training-history" element={<TrainingHistoryPage />} />
 
           <Route path="/create" element={<CreatePage />} />
+          
 
           <Route path="/calc" element={<CalcPage />} />
           <Route path="/calc/bmi" element={<BMICalculator/>} />
