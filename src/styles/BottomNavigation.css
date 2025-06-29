@@ -20,9 +20,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: var(--glass-effect);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--glass-effect);  
   box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
   padding: 12px 0;
   z-index: 100;
@@ -80,17 +78,7 @@
   background: rgba(108, 92, 231, 0.1);
 }
 
-.nav-item.active::after {
-  content: '';
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 24px;
-  height: 3px;
-  background: var(--primary);
-  border-radius: 3px;
-}
+
 
 .nav-item.active svg {
   color: var(--primary);
@@ -115,10 +103,7 @@
   opacity: 1;
 }
 
-.nav-item:nth-child(3) svg {
-  color: white;
-  transform: scale(1.2);
-}
+
 
 .nav-item:nth-child(3).active svg {
   transform: scale(1.3);

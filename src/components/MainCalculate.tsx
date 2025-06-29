@@ -1,5 +1,6 @@
 import { useState, type ChangeEvent, type FC, type FormEvent } from "react";
 import '../styles/FormStyles.css'
+import { Link } from "react-router-dom";
 
 interface FormTypes {
   gender: 'male' | 'female';
@@ -312,6 +313,11 @@ export const MainCalculate:FC = () => {
             </div>
           </div>
         )}
+
+         <Link to='/calc' className="back-link">
+            ← Вернуться к калькуляторам
+          </Link>
+
       </form>
     </div>
   );

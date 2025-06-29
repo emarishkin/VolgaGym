@@ -6,7 +6,6 @@ import { BottomNavigation } from "./components/BottomNavigation";
 import './styles/global.css'
 import { CalcPage } from "./pages/CalcPage";
 import { BMICalculator } from "./components/BMICalculator";
-import { CaloriesCalculator } from "./components/CaloriesCalculator";
 import { PM1Calculator } from "./components/PM1Calculator";
 import { BelokCalculator } from "./components/BelokCalculator";
 import { BACCalc } from "./components/BACCalc";
@@ -27,13 +26,12 @@ const AppContent = () => {
           <Route path="/training-history" element={<TrainingHistoryPage />} />
           <Route path="/calc" element={<CalcPage />} />
           <Route path="/calc/bmi" element={<BMICalculator/>} />
-          <Route path="/calc/calories" element={<CaloriesCalculator />} />
           <Route path="/calc/macros" element={<BJUCalcFull />} />
           <Route path="/calc/1rm" element={<PM1Calculator/>} />
           <Route path="/calc/belok" element={<BelokCalculator />} />
           <Route path="/calc/bac" element={<BACCalc />} />
-           <Route path="/calc/tonaG" element={<VolumeCalculator />} />
-           <Route path="/calc/FULL" element={<MainCalculate/>} />
+          <Route path="/calc/tonaG" element={<VolumeCalculator />} />
+          <Route path="/calc/FULL" element={<MainCalculate/>} />
 
         </Routes>
       </main>
