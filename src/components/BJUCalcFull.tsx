@@ -62,13 +62,13 @@ export const BJUCalcFull: FC = () => {
         setResult(finalCalories);
 
         const proteinPerKg = purpose === 2 ? 2.2 : 1.8;
-        const fatPercentage = purpose === 3 ? 0.25 : 0.3;
+        const fatPercentage = purpose === 2 ? 0.85 : 0.55;
 
         const belokGRAM = proteinPerKg * weight;
         const belok = belokGRAM * 4;
         
-        const fat = finalCalories * fatPercentage;
-        const fatGRAM = fat / 9;
+        const fatGRAM = weight * fatPercentage;
+        const fat = fatGRAM * 9
         
         const yglivody = finalCalories - belok - fat;
         const yglivodyGRAM = yglivody / 4;

@@ -13,7 +13,7 @@ export const BelokCalculator: FC = () => {
         let normaBelka;
         if (weight <= 0 || gender === 'не выбрано') return alert('Заполните все поля');
         if (gender === 'male') {
-            normaBelka = weight * activity;
+            normaBelka = activity > 1.8 ? weight * 2.2 : weight * 1.8
         } else {
             normaBelka = weight * activity - 50;
         }
@@ -57,11 +57,11 @@ export const BelokCalculator: FC = () => {
                         value={activity}
                         onChange={(e) => setActivity(Number(e.target.value))}
                     >
-                        <option value={0.9}>Сидячий образ жизни</option>
-                        <option value={1.1}>Легкая активность</option>
-                        <option value={1.55}>Умеренная активность</option>
-                        <option value={1.925}>Высокая активность</option>
-                        <option value={2.1}>Экстремальная активность</option>
+                        <option value={1.7}>Сидячий образ жизни</option>
+                        <option value={1.8}>Легкая активность</option>
+                        <option value={2.1}>Умеренная активность</option>
+                        <option value={2.15}>Высокая активность</option>
+                        <option value={2.2}>Экстремальная активность</option>
                     </select>
                 </div>
 
@@ -70,7 +70,7 @@ export const BelokCalculator: FC = () => {
                 {result && (
                     <div className="result-form">
                         <h3>Ваша суточная норма белка:</h3>
-                        <p className="result-value">{result} грамм</p>
+                        <p className="result-value">{result.toFixed(0)} грамм</p>
                     </div>
                 )}
 
