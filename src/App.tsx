@@ -13,6 +13,7 @@ import { BJUCalcFull } from "./components/BJUCalcFull";
 import { VolumeCalculator } from "./components/TonaGCalc";
 import { MainCalculate } from "./components/MainCalculate";
 import { CreatePage } from "./pages/CreatePage";
+import { MyProgram } from "./components/MyProgram";
 
 const AppContent = () => {
   const location = useLocation();
@@ -29,7 +30,7 @@ const AppContent = () => {
           <Route path="/training-history" element={<TrainingHistoryPage />} />
 
           <Route path="/create" element={<CreatePage />} />
-          
+          <Route path="/create/program" element={<MyProgram />} />
 
           <Route path="/calc" element={<CalcPage />} />
           <Route path="/calc/bmi" element={<BMICalculator/>} />

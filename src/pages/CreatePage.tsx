@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import { Creates } from "../data/CardCreate";
 import { CreateCard } from "../components/CreateCard";
+import '../styles/CreatePage.css'
 
 interface CreatePageProps{}
 

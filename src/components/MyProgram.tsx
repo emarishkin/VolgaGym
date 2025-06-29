@@ -1,105 +1,220 @@
 import { useState, type ChangeEvent, type FC } from "react";
+import { Link } from "react-router-dom";
+import '../styles/FormStyles.css'
 
-interface Iform{
-  name:string
-  warmUp:number
-  exercise:string
-  weigth:number
-  reps:number 
-  sets:number   
+interface IExercise {
+  exercise: string;
+  customExercise?: string;
+  weight: number;
+  reps: number;
+  sets: number;
 }
 
-export const MyProgram:FC = () => {
+interface IForm {
+  name: string;
+  warmUp: number;
+  exercises: IExercise[];
+}
 
-    const [form,setForm] = useState<Iform>({
-       name:'',
-       warmUp:5,
-       exercise:'штанга на бицепс',
-       weigth:50,
-       reps:3,
-       sets:8
-    })
-    
-    const handleChange = (e:ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const value = e.target.type === 'number'?Number(e.target.value):e.target.value
-        setForm({...form,[e.target.name]:value})
-    }
+export const MyProgram: FC = () => {
+  const [form, setForm] = useState<IForm>({
+    name: '',
+    warmUp: 5,
+    exercises: [{
+      exercise: '',
+      customExercise: '',
+      weight: 50,
+      reps: 3,
+      sets: 8
+    }]
+  });
 
-    return (
-        <div>
-            <h2>Создание тренировочного дня</h2>
-            <form>
-                <div>
-                    <label>Название вашей тренировки</label>
-                    <input 
-                    type="text" 
-                    name="name"
-                    value={form.name}
-                    placeholder="Например: Спина/Плечи/Трицепс или Верх/Низ"
-                    onChange={handleChange}
-                    required
-                    />
-                </div>
+  const handleMainChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setForm({
+      ...form,
+      [name]: e.target.type === 'number' ? Number(value) : value
+    });
+  };
 
-                <div>
-                    <label>Разминка</label>
-                    <select name="warm-up" value={form.warmUp} onChange={handleChange} required>
-                        <option value="">2</option>
-                        <option value="">5</option>
-                        <option value="">10</option>
-                        <option value="">15</option>
-                    </select>
-                </div>
+  const handleExerciseChange = (index: number, e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    const updatedExercises = [...form.exercises];
+    updatedExercises[index] = {
+      ...updatedExercises[index],
+      [name]: e.target.type === 'number' ? Number(value) : value
+    };
+    setForm({ ...form, exercises: updatedExercises });
+  };
 
-                <div>
-                    <h3>1-Упражнение</h3>
-                    <div>
-                        <label>Упражнение</label>
-                        <select name="exercise" value={form.exercise} onChange={handleChange} required>
-                            <option value="">Жим штанги</option>
-                            <option value="">Приседания со штангой на плечах</option>
-                            <option value="">Тяга верхнего блока</option>
-                            <option value="">Сгибание рук на бицепс с гантелью</option>
-                            <option value="">Отжимания</option>
-                            <option value="">Французский жим</option>
-                            <option value="">Разгибание</option>
-                            <option value="myExercise">Напишите свое упражнение</option>
-                            {/* {if (value==='myExercise') <input type="text" onChange={handleChange} />} */}
-                        </select>
-                    </div>
+  const addExercise = () => {
+    setForm({
+      ...form,
+      exercises: [...form.exercises, {
+        exercise: '',
+        customExercise: '',
+        weight: 50,
+        reps: 3,
+        sets: 8
+      }]
+    });
+  };
 
-                    <div>
-                        <label>Вес</label>
-                        <input 
-                        type="number" 
-                        name="weigth"
-                        value={form.weigth}
-                        onChange={handleChange}
-                        required
-                        />
-                    </div>
+  const removeExercise = (index: number) => {
+    if (form.exercises.length <= 1) return;
+    const updatedExercises = form.exercises.filter((_, i) => i !== index);
+    setForm({ ...form, exercises: updatedExercises });
+  };
 
-                    <div>
-                        <label>Подходы</label>
-                        <select name="reps" value={form.reps} onChange={handleChange} >
-                            <option value="">1</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                            <option value="">4</option>
-                            <option value="">5</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label>Повторения</label>
-                        <select name="sets" value={form.sets} onChange={handleChange} >
-                            {Array.from({length: 30}, (_, i) => (
-                                <option key={i} value={i}>{i}</option>
-                            ))}
-                        </select>
-                    </div>
-                </div>
-            </form>
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Программа сохранена:', form);
+    // Здесь можно добавить логику сохранения
+  };
+
+  return (
+    <div className="form-container">
+      <h2 className="form-title">Создание тренировочного дня</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label className="form-label">Название вашей тренировки</label>
+          <input
+            type="text"
+            name="name"
+            className="form-input"
+            value={form.name}
+            placeholder="Например: Спина/Плечи/Трицепс или Верх/Низ"
+            onChange={handleMainChange}
+            required
+          />
         </div>
-    )
-}
+
+        <div className="form-group">
+          <label className="form-label">Разминка (минут)</label>
+          <select 
+            name="warmUp" 
+            className="form-select"
+            value={form.warmUp} 
+            onChange={handleMainChange} 
+            required
+          >
+            {[2, 5, 10, 15, 20].map((time) => (
+              <option key={time} value={time}>{time}</option>
+            ))}
+          </select>
+        </div>
+
+        {form.exercises.map((exercise, index) => (
+          <div key={index} className="exercise-block">
+            <h3 className="exercise-title">{index + 1}-е Упражнение</h3>
+
+            <div className="form-group">
+              <label className="form-label">Упражнение</label>
+              <select
+                name="exercise"
+                className="form-select"
+                value={exercise.exercise}
+                onChange={(e) => handleExerciseChange(index, e)}
+                required
+              >
+                <option value="">Выберите упражнение</option>
+                <option value="Жим штанги">Жим штанги</option>
+                <option value="Приседания со штангой на плечах">Приседания со штангой</option>
+                <option value="Тяга верхнего блока">Тяга верхнего блока</option>
+                <option value="Сгибание рук на бицепс с гантелью">Сгибание рук на бицепс</option>
+                <option value="Отжимания">Отжимания</option>
+                <option value="Французский жим">Французский жим</option>
+                <option value="Разгибание">Разгибание</option>
+                <option value="custom">Другое</option>
+              </select>
+
+              {exercise.exercise === 'custom' && (
+                <input
+                  type="text"
+                  name="customExercise"
+                  className="form-input"
+                  value={exercise.customExercise || ''}
+                  onChange={(e) => handleExerciseChange(index, e)}
+                  placeholder="Введите свое упражнение"
+                  required
+                />
+              )}
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Вес (кг)</label>
+              <input
+                type="number"
+                name="weight"
+                className="form-input"
+                min="0"
+                step="0.5"
+                value={exercise.weight}
+                onChange={(e) => handleExerciseChange(index, e)}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Подходы</label>
+              <select
+                name="sets"
+                className="form-select"
+                onChange={(e) => handleExerciseChange(index, e)}
+                value={exercise.sets}
+                required
+              >
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((set) => (
+                  <option key={set} value={set}>{set}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Повторения</label>
+              <select
+                name="reps"
+                className="form-select"
+                value={exercise.reps}
+                onChange={(e) => handleExerciseChange(index, e)}
+                required
+              >
+                {Array.from({ length: 30 }, (_, i) => (
+                  <option key={i+1} value={i+1}>{i+1}</option>
+                ))}
+              </select>
+            </div>
+
+            <button
+              type="button"
+              className="remove-btn"
+              onClick={() => removeExercise(index)}
+              disabled={form.exercises.length <= 1}
+            >
+              Удалить упражнение
+            </button>
+          </div>
+        ))}
+
+        <div className="form-actions">
+          <button 
+            type="button" 
+            className="add-btn calculate-btn"
+            onClick={addExercise}
+          >
+            ➕ Добавить упражнение
+          </button>
+          <button 
+            type="submit" 
+            className="submit-btn calculate-btn"
+          >
+            💾 Сохранить программу
+          </button>
+          <Link to="/create" className="back-btn calculate-btn">
+            ← Назад
+          </Link>
+        </div>
+      </form>
+    </div>
+  );
+};
