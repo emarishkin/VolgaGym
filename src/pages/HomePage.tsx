@@ -24,6 +24,9 @@ export const HomePage:FC<HomePageProps> = () => {
                 <Link to='/calc'>
                     Калькуляторы
                 </Link>
+                <Link to='/program'>
+                    Получить программу тренировок
+                </Link>
                 <Link to='/'>
                     Сообщество
                 </Link>

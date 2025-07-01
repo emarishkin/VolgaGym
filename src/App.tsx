@@ -16,6 +16,8 @@ import { CreatePage } from "./pages/CreatePage";
 import { MyProgram } from "./components/MyProgram";
 import { MyTrainings } from "./components/MyTrainings";
 import { TrainingDetails } from "./components/TrainingDetails";
+import { ProgramTreinersPage } from "./pages/ProgramTreinersPage";
+
 
 const AppContent = () => {
   const location = useLocation();
@@ -35,6 +37,8 @@ const AppContent = () => {
           <Route path="/create/program" element={<MyProgram />} />
           <Route path="/my-trainings" element={<MyTrainings />} />
           <Route path="/trainings/:id" element={<TrainingDetails />} />
+
+          <Route path="/program" element={<ProgramTreinersPage />} />
 
           <Route path="/calc" element={<CalcPage />} />
           <Route path="/calc/bmi" element={<BMICalculator/>} />

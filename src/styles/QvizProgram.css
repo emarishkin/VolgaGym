@@ -1,0 +1,137 @@
+/* QvizProgram.css */
+.qviz-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    0 1px 8px rgba(0, 0, 0, 0.05);
+ 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+          margin-bottom: 65px;
+}
+
+.qviz-progress-bar {
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+}
+
+.qviz-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6c5ce7, #00cec9);
+  border-radius: 5px;
+  transition: width 0.4s ease;
+}
+
+.qviz-question-counter {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.qviz-question-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #2d3436;
+  line-height: 1.4;
+  background: linear-gradient(90deg, #2d3436, #636e72);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.qviz-answers-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.qviz-answer-button {
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #2d3436;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.qviz-answer-button:hover {
+  background: white;
+  border-color: rgba(108, 92, 231, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(108, 92, 231, 0.15);
+}
+
+.qviz-answer-button:active {
+  transform: translateY(0);
+}
+
+.qviz-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.qviz-back-button {
+  padding: 0.8rem 1.8rem;
+  background: rgba(108, 92, 231, 0.1);
+  border: 1px solid rgba(108, 92, 231, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: #6c5ce7;
+}
+
+.qviz-back-button:hover {
+  background: rgba(108, 92, 231, 0.2);
+  transform: translateY(-2px);
+}
+
+.qviz-back-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .qviz-container {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+  
+  .qviz-question-text {
+    font-size: 1.4rem;
+  }
+  
+  .qviz-answer-button {
+    padding: 1rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .qviz-container {
+    padding: 1.2rem;
+    border-radius: 10px;
+    
+  }
+  
+  .qviz-question-text {
+    font-size: 1.3rem;
+  }
+}
