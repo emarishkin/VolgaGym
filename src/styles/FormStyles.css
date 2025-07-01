@@ -240,6 +240,208 @@
   margin-bottom: 100px; /* Примерно высота навигации + дополнительное пространство */
 }
 
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--light);
+}
+
+.no-trainings {
+  text-align: center;
+  padding: 2rem;
+  color: var(--light);
+}
+
+.no-trainings p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.trainings-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.training-card {
+  background: rgba(45, 52, 54, 0.6);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  border-left: 4px solid var(--primary);
+  transition: var(--transition);
+}
+
+.training-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glow);
+}
+
+.training-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.training-header h3 {
+  margin: 0;
+  color: var(--light);
+  font-size: 1.3rem;
+}
+
+.training-date {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+.training-details {
+  margin-bottom: 1.5rem;
+}
+
+.training-details p {
+  margin: 0.5rem 0;
+  color: var(--light);
+}
+
+.exercises-list {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exercises-list li {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.7rem 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+}
+
+.exercise-number {
+  color: var(--secondary);
+  font-weight: bold;
+  min-width: 1.5rem;
+}
+
+.exercise-name {
+  flex-grow: 1;
+  color: var(--light);
+}
+
+.exercise-sets {
+  color: var(--accent);
+  font-weight: bold;
+  min-width: 3rem;
+  text-align: right;
+}
+
+.exercise-weight {
+  color: var(--info);
+  min-width: 4rem;
+  text-align: right;
+}
+
+.training-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.delete-btn {
+  background: rgba(214, 48, 49, 0.2);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.delete-btn:hover {
+  background: rgba(214, 48, 49, 0.3);
+}
+
+.view-btn {
+  background: rgba(0, 184, 148, 0.2);
+  color: var(--success);
+  border: 1px solid var(--success);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.view-btn:hover {
+  background: rgba(0, 184, 148, 0.3);
+}
+
+
+.training-meta {
+  margin-bottom: 1.5rem;
+}
+
+.training-meta p {
+  margin: 0.5rem 0;
+  color: var(--light);
+}
+
+.exercises-details {
+  margin-top: 1.5rem;
+}
+
+.exercise-detail {
+  background: rgba(45, 52, 54, 0.4);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.exercise-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.exercise-number {
+  color: var(--secondary);
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.exercise-name {
+  color: var(--light);
+  font-weight: 500;
+}
+
+.exercise-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.stat-item {
+  background: rgba(108, 92, 231, 0.1);
+  border-radius: calc(var(--border-radius) - 4px);
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  margin-bottom: 0.2rem;
+}
+
+.stat-value {
+  display: block;
+  color: var(--light);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }

@@ -1,8 +1,9 @@
-import { useState, type ChangeEvent, type FC } from "react";
-import { Link } from "react-router-dom";
-import '../styles/FormStyles.css'
+import { useState, type ChangeEvent, type FC, type FormEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import '../styles/FormStyles.css';
 
 interface IExercise {
+  id: string;
   exercise: string;
   customExercise?: string;
   weight: number;
@@ -10,17 +11,21 @@ interface IExercise {
   sets: number;
 }
 
-interface IForm {
+export interface ITrainingProgram {
+  id: string;
   name: string;
   warmUp: number;
   exercises: IExercise[];
+  createdAt: string;
 }
 
 export const MyProgram: FC = () => {
-  const [form, setForm] = useState<IForm>({
+  const navigate = useNavigate();
+  const [form, setForm] = useState<Omit<ITrainingProgram, 'id' | 'createdAt'>>({
     name: '',
     warmUp: 5,
     exercises: [{
+      id: crypto.randomUUID(),
       exercise: '',
       customExercise: '',
       weight: 50,
@@ -51,6 +56,7 @@ export const MyProgram: FC = () => {
     setForm({
       ...form,
       exercises: [...form.exercises, {
+        id: crypto.randomUUID(),
         exercise: '',
         customExercise: '',
         weight: 50,
@@ -61,21 +67,29 @@ export const MyProgram: FC = () => {
   };
 
   const removeExercise = (index: number) => {
-    if (form.exercises.length <= 1) return;
-    const updatedExercises = form.exercises.filter((_, i) => i !== index);
-    setForm({ ...form, exercises: updatedExercises });
-  };
+  if (form.exercises.length <= 1) return;
+  const updatedExercises = form.exercises.filter((_, i) => i !== index);
+  setForm({ ...form, exercises: updatedExercises });
+  };  
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Программа сохранена:', form);
-    // Здесь можно добавить логику сохранения
+  const saveTraining = (e:FormEvent) => {
+    e.preventDefault()
+    const newTraining: ITrainingProgram = {
+      ...form,
+      id: crypto.randomUUID(),
+      createdAt: new Date().toISOString()
+    };
+
+    const savedTrainings = JSON.parse(localStorage.getItem('trainings') || '[]');
+    localStorage.setItem('trainings', JSON.stringify([...savedTrainings, newTraining]));
+    
+    navigate('/my-trainings');
   };
 
   return (
     <div className="form-container">
       <h2 className="form-title">Создание тренировочного дня</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={saveTraining}>
         <div className="form-group">
           <label className="form-label">Название вашей тренировки</label>
           <input
@@ -94,7 +108,7 @@ export const MyProgram: FC = () => {
           <select 
             name="warmUp" 
             className="form-select"
-            value={form.warmUp} 
+            value={form.warmUp || ''} 
             onChange={handleMainChange} 
             required
           >
@@ -113,7 +127,7 @@ export const MyProgram: FC = () => {
               <select
                 name="exercise"
                 className="form-select"
-                value={exercise.exercise}
+                value={exercise.exercise || ''}
                 onChange={(e) => handleExerciseChange(index, e)}
                 required
               >
@@ -149,7 +163,7 @@ export const MyProgram: FC = () => {
                 className="form-input"
                 min="0"
                 step="0.5"
-                value={exercise.weight}
+                value={exercise.weight || ''}
                 onChange={(e) => handleExerciseChange(index, e)}
                 required
               />
@@ -161,7 +175,7 @@ export const MyProgram: FC = () => {
                 name="sets"
                 className="form-select"
                 onChange={(e) => handleExerciseChange(index, e)}
-                value={exercise.sets}
+                value={exercise.sets || ''}
                 required
               >
                 {[1, 2, 3, 4, 5, 6, 7, 8].map((set) => (
@@ -175,7 +189,7 @@ export const MyProgram: FC = () => {
               <select
                 name="reps"
                 className="form-select"
-                value={exercise.reps}
+                value={exercise.reps || ''}
                 onChange={(e) => handleExerciseChange(index, e)}
                 required
               >

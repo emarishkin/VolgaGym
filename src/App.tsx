@@ -14,6 +14,8 @@ import { VolumeCalculator } from "./components/TonaGCalc";
 import { MainCalculate } from "./components/MainCalculate";
 import { CreatePage } from "./pages/CreatePage";
 import { MyProgram } from "./components/MyProgram";
+import { MyTrainings } from "./components/MyTrainings";
+import { TrainingDetails } from "./components/TrainingDetails";
 
 const AppContent = () => {
   const location = useLocation();
@@ -31,6 +33,8 @@ const AppContent = () => {
 
           <Route path="/create" element={<CreatePage />} />
           <Route path="/create/program" element={<MyProgram />} />
+          <Route path="/my-trainings" element={<MyTrainings />} />
+          <Route path="/trainings/:id" element={<TrainingDetails />} />
 
           <Route path="/calc" element={<CalcPage />} />
           <Route path="/calc/bmi" element={<BMICalculator/>} />
