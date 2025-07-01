@@ -21,8 +21,8 @@ export const BottomNavigation: FC<BottomNavigationProps> = () => {
       </Link>
       
       <Link 
-        to="/search" 
-        className={`nav-item ${isActive('/search') ? 'active' : ''}`}
+        to="/nan" 
+        className={`nav-item ${isActive('/nan') ? 'active' : ''}`}
       >
         <Search size={20} />
         <span>Поиск</span>
@@ -37,7 +37,7 @@ export const BottomNavigation: FC<BottomNavigationProps> = () => {
       </Link>
       
       <Link 
-        to="/notifications" 
+        to="/nan" 
         className={`nav-item ${isActive('/notifications') ? 'active' : ''}`}
       >
         <Bell size={20} />
@@ -45,7 +45,7 @@ export const BottomNavigation: FC<BottomNavigationProps> = () => {
       </Link>
       
       <Link 
-        to="/profile" 
+        to="/nan" 
         className={`nav-item ${isActive('/profile') ? 'active' : ''}`}
       >
         <User size={20} />

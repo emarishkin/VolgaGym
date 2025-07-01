@@ -81,6 +81,10 @@
   background: linear-gradient(90deg, #6800fa, #eea849);
 }
 
+.buttons-container a:nth-child(8) { /* Сообщество */
+  background: linear-gradient(90deg, #ffffff00, #ff9500);
+}
+
 /* Адаптация для мобильных */
 @media (max-width: 768px) {
   .buttons-container {

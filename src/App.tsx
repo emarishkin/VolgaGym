@@ -17,6 +17,7 @@ import { MyProgram } from "./components/MyProgram";
 import { MyTrainings } from "./components/MyTrainings";
 import { TrainingDetails } from "./components/TrainingDetails";
 import { ProgramTreinersPage } from "./pages/ProgramTreinersPage";
+import { NaNPage } from "./pages/NaNPage";
 
 
 const AppContent = () => {
@@ -48,6 +49,8 @@ const AppContent = () => {
           <Route path="/calc/bac" element={<BACCalc />} />
           <Route path="/calc/tonaG" element={<VolumeCalculator />} />
           <Route path="/calc/FULL" element={<MainCalculate/>} />
+          
+          <Route path="/nan" element={<NaNPage />} />
 
         </Routes>
       </main>

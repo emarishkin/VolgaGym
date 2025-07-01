@@ -21,6 +21,9 @@ export const HomePage:FC<HomePageProps> = () => {
                 <Link to='/create'>
                     Создать
                 </Link>
+                <Link to='/my-trainings'>
+                    Мои тренировки
+                </Link>
                 <Link to='/calc'>
                     Калькуляторы
                 </Link>

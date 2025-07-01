@@ -258,7 +258,8 @@
 }
 
 .trainings-list {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
 }
 
@@ -325,6 +326,7 @@
 }
 
 .exercise-name {
+  width: 60px;
   flex-grow: 1;
   color: var(--light);
 }

@@ -224,10 +224,14 @@ export const MyProgram: FC = () => {
           >
             💾 Сохранить программу
           </button>
-          <Link to="/create" className="back-btn calculate-btn">
+        </div>        
+          
+           <Link to="/create" className="back-btn calculate-btn">
             ← Назад
           </Link>
-        </div>
+          
+          
+        
       </form>
     </div>
   );
