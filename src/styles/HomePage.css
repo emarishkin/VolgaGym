@@ -51,6 +51,7 @@
 /* Индивидуальные стили для каждой кнопки */
 .buttons-container a:nth-child(1) { /* Добавить тренировку */
   background: linear-gradient(90deg, #00d4ff, #0066ff);
+  background: linear-gradient(90deg, #fff200, #ff6200);
 }
 
 .buttons-container a:nth-child(2) { /* История тренировок */
@@ -62,11 +63,22 @@
 }
 
 .buttons-container a:nth-child(4) { /* Калькуляторы */
-  background: linear-gradient(90deg, #56ab2f, #a8e063);
+  background: linear-gradient(90deg, #00bfff, #a8e063);
+  background: linear-gradient(90deg, #5100ff, #8cff00);
 }
 
 .buttons-container a:nth-child(5) { /* Сообщество */
   background: linear-gradient(90deg, #f46b45, #eea849);
+  background: linear-gradient(90deg, #14eb01, #d11010);
+ 
+}
+
+.buttons-container a:nth-child(6) { /* Сообщество */
+  background: linear-gradient(90deg, #fff700, #eea849);
+}
+
+.buttons-container a:nth-child(7) { /* Сообщество */
+  background: linear-gradient(90deg, #6800fa, #eea849);
 }
 
 /* Адаптация для мобильных */
